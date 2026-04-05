@@ -1,0 +1,20 @@
+global:
+  scrape_interval:     1m # By default, scrape targets every 15 seconds.
+  evaluation_interval: 1m # By default, scrape targets every 15 seconds.
+
+remote_write:
+- url: https://prometheus-prod-10-prod-us-central-0.grafana.net/api/prom/push
+  basic_auth:
+    username: username
+    password: password
+
+scrape_configs:
+ - job_name: "gx-exchange-stats"
+   scrape_interval: 1m
+   static_configs:
+   - targets: ['gx-exchange-stats:9000']
+     labels:
+       region: us-east
+       type: system
+       server: 15.204.140.114
+       instance: 15.204.140.114
